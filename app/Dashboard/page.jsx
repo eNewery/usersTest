@@ -3,11 +3,27 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { auth, firestore } from "../firebase"; // Ajusta la ruta a tu archivo firebase.js
 import { arrayUnion, doc, getDoc, updateDoc, arrayRemove } from "firebase/firestore";
+import { getAuth, signOut } from 'firebase/auth';
+import Loading from "../components/Loading";
+
+
 const Dashboard = () => {
   const router = useRouter();
+  const auth = getAuth();
   const [data, setData] = useState();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+
+// Función para cerrar sesión
+const handleSignOut = async () => {
+  try {
+    await signOut(auth);
+    router.push("./")
+    console.log('Se cerró sesión exitosamente');
+  } catch (error) {
+    console.error('Error al cerrar sesión:', error);
+  }
+};
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -70,7 +86,7 @@ const newData = {
         <div className="dashboardContainer">
         <div className="dashboard">
           {data.userDetails.map((item) => (
-            <div className="dashboardUsername">{item.username}</div>
+            <div className="dashboardUsername"><p>Bienvenidx de nuevo {item.username}!</p><button onClick={() => handleSignOut()}>Cerrar sesión</button></div>
           ))}
          <div className={"taskForm"}>
       <form onSubmit={updateDocument}>
@@ -106,7 +122,7 @@ delete
         </div>
         </div>
       ) : (
-        <div>Loading...</div>
+        <Loading/>
       )}
     </div>
   );

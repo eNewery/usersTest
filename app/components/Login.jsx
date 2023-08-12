@@ -17,11 +17,14 @@ const router = useRouter()
     setPassword(event.target.value);
   };
   const logIn = async () => {
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      router.push('/Dashboard'); // Redireccionar a la página protegida
-    } catch (error) {
-      console.error('Error al iniciar sesión:', error);
+      try {
+          await signInWithEmailAndPassword(auth, email, password);
+          router.push('/Dashboard'); // Redireccionar a la página protegida
+        } catch (error) {
+    const loginEmail = document.querySelector(".loginEmail")
+    const loginPassword = document.querySelector(".loginPassword")
+      loginEmail.classList.add("inputBorderRed")
+      loginPassword.classList.add("inputBorderRed")
     }
   }
   const handleLogin = async (event) => {
@@ -33,7 +36,7 @@ logIn()
     <div className="loginFormContainer">
       <h2 className="loginFormTitle">Iniciar Sesión</h2>
       <form className='loginForm' onSubmit={handleLogin}>
-<input className='loginFormInput' placeholder='E-mail' type="text" onChange={handleEmailChange} /><input className='loginFormInput' placeholder='Password' type="password" onChange={handlePasswordChange} />
+<input className='loginFormInput loginEmail' placeholder='E-mail' type="text" onChange={handleEmailChange} /><input className='loginFormInput loginPassword' placeholder='Password' type="password" onChange={handlePasswordChange} />
 <button className='loginBtn' type="submit">Iniciar</button>
 <p onClick={() => context.setIsRegistered(false)} className='loginRegister'>¿No tienes una cuenta?</p>
       </form>

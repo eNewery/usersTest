@@ -40,7 +40,12 @@ tasks: []
         context.setIsRegistered(true)
 
     } catch (error) {
-      alert('Error al crear usuario o colección:', error);
+     const registerUsername = document.getElementById("username")
+     const registerEmail = document.getElementById("email")
+     const registerPassword = document.getElementById("password")
+     registerUsername.classList.add("inputBorderRed")
+     registerEmail.classList.add("inputBorderRed")
+     registerPassword.classList.add("inputBorderRed")
     }
   };
   /* Función para crear usuario y colección */
