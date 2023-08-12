@@ -1,9 +1,9 @@
 "use client"
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 
 const MiContexto = createContext();
 const MiContextoProvider = ({ children }) => {
-
+const [isRegistered, setIsRegistered] = useState(true)
 
 
   /* Función para iniciar sesión */
@@ -15,7 +15,7 @@ const MiContextoProvider = ({ children }) => {
 
       
     return (
-      <MiContexto.Provider value={{}}>
+      <MiContexto.Provider value={{isRegistered, setIsRegistered}}>
         {children}
       </MiContexto.Provider>
     );

@@ -30,11 +30,12 @@ logIn()
   };
 
   return (
-    <div className="login-form">
-      <h2>Iniciar Sesión</h2>
-      <form onSubmit={handleLogin}>
-<input type="text" onChange={handleEmailChange} /><input type="password" onChange={handlePasswordChange} />
-<button type="submit">Iniciar</button>
+    <div className="loginFormContainer">
+      <h2 className="loginFormTitle">Iniciar Sesión</h2>
+      <form className='loginForm' onSubmit={handleLogin}>
+<input className='loginFormInput' placeholder='E-mail' type="text" onChange={handleEmailChange} /><input className='loginFormInput' placeholder='Password' type="password" onChange={handlePasswordChange} />
+<button className='loginBtn' type="submit">Iniciar</button>
+<p onClick={() => context.setIsRegistered(false)} className='loginRegister'>¿No tienes una cuenta?</p>
       </form>
     </div>
   );

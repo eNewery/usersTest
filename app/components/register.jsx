@@ -1,14 +1,15 @@
 "use client"
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import { useRouter } from 'next/navigation';
 import { auth, firestore, createUserWithEmailAndPassword } from '../firebase'; // Ajusta la ruta a tu archivo firebase.js
 import { doc, setDoc } from 'firebase/firestore';
+import { MiContexto } from './context';
 const register = () => {
-  
+  const context = useContext(MiContexto)
   const [email, setEmail] = useState("")
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-
+const router = useRouter()
   /* Función para crear usuario y colección */
   const createUserAndCollection = async () => {
     try {
@@ -30,15 +31,22 @@ userDetails: [{
   email: email,
   username:username,
   password:password
-}]
+}],
+tasks: []
       });
 
       console.log('Usuario y colección creados exitosamente.');
+      
+        context.setIsRegistered(true)
+
     } catch (error) {
-      console.error('Error al crear usuario o colección:', error);
+      alert('Error al crear usuario o colección:', error);
     }
   };
   /* Función para crear usuario y colección */
+
+
+
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
@@ -54,39 +62,40 @@ userDetails: [{
   };
   return (
   
-    <div className="register-form">
-      <h2>Registro</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-        <label htmlFor="username">Username:</label>
+    <div className="registerFormContainer">
+      <h2 className='registerFormTitle'>Registro</h2>
+      <form className='registerForm' onSubmit={handleSubmit}>
         <input
+        className='registerInput'
             type="username"
             id="username"
             value={username}
+            placeholder='Username'
             onChange={handleUsernameChange}
             required
           />
-          <label htmlFor="email">Email:</label>
           <input
+          className='registerInput'
             type="email"
             id="email"
+            placeholder='E-mail'
             value={email}
             onChange={handleEmailChange}
             required
           />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Contraseña:</label>
+
           <input
+          className='registerInput'
             type="password"
             id="password"
+            placeholder='Password'
             value={password}
             onChange={handlePasswordChange}
             required
           />
-        </div>
-        <button type="submit">Registrarse</button>
+        <button className='registerBtn' type="submit">Registrarse</button>
       </form>
+      <p onClick={() => context.setIsRegistered(true)} className='registerLogin'>¿Ya tienes una cuenta?</p>
     </div>
 )
 }
