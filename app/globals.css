@@ -282,3 +282,50 @@ width: 95%;
   cursor: pointer;
 }
 /* Form Task Create */
+
+/* Media 1200 */
+
+@media (max-width:1200px) {
+ /* Dashboard Media 1200 */
+ .dashboardContainer{
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+ }
+ .dashboardTasks{
+  justify-content: center;
+  align-items: center;
+ }
+ .dashboardUsername{
+  width: 300px;
+  text-align: center;
+ }
+ .dashboardUsername button{
+  transition: 0.3s;
+ }
+ .dashboardUsername button:active{
+  transition: 0.3s;
+ }
+  .dashboard{
+justify-content: center;
+align-items: center;
+  }
+  .taskForm{
+    min-width:70% ;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .taskForm form{
+    position: relative;
+    right: 0.4em;
+  }
+  .taskCard{
+    width: 350px;
+  }
+ /* Dashboard Media 1200 */
+
+}
+
+/* Media 1200 */
