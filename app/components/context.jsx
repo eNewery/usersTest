@@ -3,7 +3,7 @@ import React, { createContext, useState } from 'react';
 
 const MiContexto = createContext();
 const MiContextoProvider = ({ children }) => {
-const [isRegistered, setIsRegistered] = useState(true)
+const [isRegistered, setIsRegistered] = useState(false)
 
 
   /* Función para iniciar sesión */

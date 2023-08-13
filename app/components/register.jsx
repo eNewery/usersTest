@@ -99,8 +99,8 @@ tasks: []
             required
           />
         <button className='registerBtn' type="submit">Registrarse</button>
-      </form>
       <p onClick={() => context.setIsRegistered(true)} className='registerLogin'>¿Ya tienes una cuenta?</p>
+      </form>
     </div>
 )
 }
